@@ -40,6 +40,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
         android:text="Save"
-        app:layout_constraintTop_toBottomOf="@id/edt_contact"
-        app:layout_constraintLeft_toLeftOf="parent"/>
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/edt_contact" />
+    <Button
+        android:id="@+id/btnfetch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="Fetch"
+        android:layout_marginStart="10dp"
+        app:layout_constraintLeft_toRightOf="@id/btnsave"
+        app:layout_constraintTop_toBottomOf="@id/edt_contact" />
+    <GridView
+        android:id="@+id/mylist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:numColumns="2"
+        app:layout_constraintTop_toBottomOf="@id/btnsave" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
