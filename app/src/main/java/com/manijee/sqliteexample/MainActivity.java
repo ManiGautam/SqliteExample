@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Helper helper;
 EditText name,contact;
 TextView tv;
-Button save,fetch;
+Button save,fetch,search;
 GridView allrecordsview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,10 +32,13 @@ GridView allrecordsview;
         allrecordsview=findViewById(R.id.mylist);
         fetch=findViewById(R.id.btnfetch);
         fetch.setOnClickListener(this);
+        search=findViewById(R.id.btnsearch);
+        search.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
+        Cursor cursor=null;
       switch (v.getId()){
           case R.id.btnsave:
                  String msg=helper.onSave(name.getText().toString(),contact.getText().toString());
@@ -43,7 +46,11 @@ GridView allrecordsview;
                  clearText();
               break;
           case R.id.btnfetch:
-              Cursor cursor=helper.fetchAllData();
+              cursor=helper.fetchAllData();
+              loadCursorDataToGridView(cursor);
+              break;
+          case R.id.btnsearch:
+              cursor=helper.searchData(contact.getText().toString());
               loadCursorDataToGridView(cursor);
               break;
       }
@@ -53,10 +60,10 @@ GridView allrecordsview;
         cursor.moveToFirst();
         if (cursor!=null&&cursor.getColumnCount()>0){
             ArrayList data=new ArrayList();
-            while (cursor.moveToNext()){
+           do{
                 data.add(cursor.getString(0));
                 data.add(cursor.getString(1));
-            }
+            } while (cursor.moveToNext());
             ArrayAdapter adapter=new ArrayAdapter(this, android.R.layout.simple_list_item_1,data);
             allrecordsview.setAdapter(adapter);
         }else{

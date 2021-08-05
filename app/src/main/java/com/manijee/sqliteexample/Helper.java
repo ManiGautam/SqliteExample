@@ -57,4 +57,16 @@ public class Helper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    public Cursor searchData(String param) {
+        Cursor cursor=null;
+        try{
+            database=getReadableDatabase();
+            String[] columns=new String[]{name,contact};
+            cursor=database.query(tableName,columns,contact+"=?",new String[]{param},null,null,null);
+        }catch (Exception ex){
+            Log.i("sqlite_error",ex.getMessage());
+        }
+        return cursor;
+    }
 }

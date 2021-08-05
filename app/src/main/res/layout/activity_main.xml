@@ -51,6 +51,15 @@
         android:layout_marginStart="10dp"
         app:layout_constraintLeft_toRightOf="@id/btnsave"
         app:layout_constraintTop_toBottomOf="@id/edt_contact" />
+    <Button
+        android:id="@+id/btnsearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="Search"
+        android:layout_marginStart="10dp"
+        app:layout_constraintLeft_toRightOf="@id/btnfetch"
+        app:layout_constraintTop_toBottomOf="@id/edt_contact" />
     <GridView
         android:id="@+id/mylist"
         android:layout_width="match_parent"
