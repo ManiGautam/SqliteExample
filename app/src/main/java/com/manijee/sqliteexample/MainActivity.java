@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     Helper helper;
 EditText name,contact;
 TextView tv;
-Button save,fetch,search;
+Button save,fetch,search,delete,update;
 GridView allrecordsview;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,10 @@ GridView allrecordsview;
         fetch.setOnClickListener(this);
         search=findViewById(R.id.btnsearch);
         search.setOnClickListener(this);
+        delete=findViewById(R.id.btndelete);
+        delete.setOnClickListener(this);
+        update=findViewById(R.id.btnupdate);
+        update.setOnClickListener(this);
     }
 
     @Override
@@ -53,14 +57,22 @@ GridView allrecordsview;
               cursor=helper.searchData(contact.getText().toString());
               loadCursorDataToGridView(cursor);
               break;
+          case R.id.btndelete:
+                String msgInfo=helper.deleleteData(contact.getText().toString());
+                tv.setText(msgInfo);
+              break;
+          case R.id.btnupdate:
+              String msgUpdate=helper.onUpdate(name.getText().toString(),contact.getText().toString());
+              tv.setText(msgUpdate);
+              clearText();
+              break;
       }
     }
-
     private void loadCursorDataToGridView(Cursor cursor) {
-        cursor.moveToFirst();
-        if (cursor!=null&&cursor.getColumnCount()>0){
+        if (cursor!=null&& cursor.moveToNext()==true){//cursor.getColumnCount()
+            cursor.moveToFirst();
             ArrayList data=new ArrayList();
-           do{
+            do{
                 data.add(cursor.getString(0));
                 data.add(cursor.getString(1));
             } while (cursor.moveToNext());

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/margin_default"
+    android:padding="15dp"
     tools:context=".MainActivity">
 
     <TextView
@@ -60,12 +60,30 @@
         android:layout_marginStart="10dp"
         app:layout_constraintLeft_toRightOf="@id/btnfetch"
         app:layout_constraintTop_toBottomOf="@id/edt_contact" />
+    <Button
+        android:id="@+id/btndelete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="Delete"
+        android:layout_marginStart="10dp"
+        app:layout_constraintLeft_toRightOf="@id/btnsearch"
+        app:layout_constraintTop_toBottomOf="@id/edt_contact" />
+    <Button
+        android:id="@+id/btnupdate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/margin_default"
+        android:text="update"
+        android:layout_marginStart="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnsave" />
     <GridView
         android:id="@+id/mylist"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/margin_default"
         android:numColumns="2"
-        app:layout_constraintTop_toBottomOf="@id/btnsave" />
+        app:layout_constraintTop_toBottomOf="@id/btnupdate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

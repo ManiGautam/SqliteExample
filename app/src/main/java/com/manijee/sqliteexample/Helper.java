@@ -69,4 +69,35 @@ public class Helper extends SQLiteOpenHelper {
         }
         return cursor;
     }
+
+    public String deleleteData(String userNumber) {
+        try{
+          database=getWritableDatabase();
+         long result=database.delete(tableName,contact+"=?",new String[]{userNumber});
+         if (result>0){
+             return "data deleted";
+         }else{
+             return "Failed to delete item,please try later";
+         }
+        }catch (Exception ex){
+            return ex.getMessage();
+        }
+    }
+
+    public String onUpdate(String username, String usercontact) {
+        try {
+            database = getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(name, username);
+            cv.put(contact, usercontact);
+            long result = database.update(tableName, cv,contact+"=?",new String[]{usercontact});
+            if (result > 0) {
+                return "Data updated successfully";
+            } else {
+                return "Error to update data";
+            }
+        }catch (Exception ex){
+            return ex.getMessage();
+        }
+    }
 }
